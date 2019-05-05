@@ -1,0 +1,149 @@
+1.2.1　编写一个 Point2D 的用例，从命令行接受一个整数 N。 在单位正方形中生成 N 个随机点，然后计 算两点之间的最近距离。
+
+1.2.2　编写一个 Interval1D 的用例，从命令行接受一个整数 N。 从标准输入中读取 N 个间隔（每个间隔 由一对 double 值定义）并打印出所有相交的间隔对。
+
+1.2.3　编写一个 Interval2D 的用例，从命令行接受参数 N 、 min 和 max 。生成 N 个随机的 2D 间隔，其宽 和高均匀地分布在单位正方形中的 min 和 max 之间。用 StdDraw 画出它们并打印出相交的间隔对 的数量以及有包含关系的间隔对数量。
+
+1.2.4 以下这段代码会打印出什么？
+
+113
+
+String string1 = "hello"; String string2 = string1; string1 = "world"; StdOut.println(string1); StdOut.println(string2);
+
+1.2.5 以下这段代码会打印出什么？
+
+String s = "Hello World"; s.toUpperCase(); s.substring(6, 11); StdOut.println(s);
+
+答：" Hello World" 。 String 对象是不可变的——所有字符串方法都会返回一个新的 String 对象
+
+（但它们不会改变参数对象的值）。这段代码忽略了返回的对象并直接打印了原字符串。要打印出 " WORLD" ，请用 s = s.toUpperCase() 和 s = s.substring(6, 11) 。
+
+1.2.6　如果字符串 s 中的字符循环移动任意位置之后能够得到另一个字符串 t ，那么 s 就被称为 t 的回 环变位（circular rotation）。 例如， ACTGACG 就是 TGACGAC 的一个回环变位， 反之亦然。 判定这 个条件在基因组序列的研究中是很重要的。编写一个程序检查两个给定的字符串 s 和 t 是否互为 回环变位。提示：答案只需要一行用到 indexOf() 、 length() 和字符串连接的代码。
+
+1.2.7 以下递归函数的返回值是什么？
+
+114
+
+public static String mystery(String s) { int N = s.length(); if (N <= 1) return s; String a = s.substring(0, N/2); String b = s.substring(N/2, N); return mystery(b) + mystery(a); }
+
+1.2.8 设
+
+a[]
+
+和
+
+b[]
+
+均为长数百万的整形数组。以下代码的作用是什么？有效吗？
+
+int[] t = a; a = b; b = t;
+
+答：这段代码会将它们交换。它的效率不可能再高了，因为它复制的是引用而不需要复制数百万 个元素。
+
+1.2.9　修改 BinarySearch （请见 1.1.10.1 节中的二分查找代码）， 使用 Counter 统计在有查找中被检 查的键的总数并在查找全部结束后打印该值。提示：在 main() 中创建一个 Counter 对象并将它 作为参数传递给 rank() 。
+
+1.2.10　编写一个类 VisualCounter ，支持加一和减一操作。它的构造函数接受两个参数 N 和 max ，其 中 N 指定了操作的最大次数， max 指定了计数器的最大绝对值。作为副作用，用图像显示每次计 数器变化后的值。
+
+1.2.11 根据 Date 的 API 实现一个 SmartDate 类型，在日期非法时抛出一个异常。
+
+1.2.12　为 SmartDate 添加一个方法 dayOfTheWeek() ， 为日期中每周的日返回 Monday 、 Tuesday 、 Wednesday 、 Thursday 、 Friday 、 Saturday 或 Sunday 中的适当值。你可以假定时间是 21 世纪。
+
+1.2.13 用我们对 Date 的实现（请见表 1.2.12）作为模板实现 Transaction 类型。
+
+115 116
+
+1.2.14　用我们对 Date 中的 equals() 方法的实现（请见 1.2.5.8 节中的 Date 类代码框）作为模板，实 现 Transaction 中的 equals() 方法。
+
+1.2.15 文件输入。基于 String 的 split() 方法实现 In 中的静态方法 readInts() 。
+
+解答：
+
+public static int[] readInts(String name) {
+
+In in = new In(name); String input = in.readAll(); String[] words = input.split("\\s+"); int[] ints = new int[words.length]; for(int i = 0; i < word.length; i++) ints[i] = Integer.parseInt(words[i]); return ints;
+
+}
+
+1.2.16
+
+我们会在 1.3 节中学习另一个不同的实现（请见 1.3.1.5 节）。 有理数。为有理数实现一个不可变数据类型 Rational ，支持加减乘除操作。
+
+public class Rational
+
+Rational(int numerator, int denominator)
+
+Rational
+
+Rational
+
+Rational
+
+Rational
+
+boolean
+
+String
+
+plus(Rational b)
+
+minus(Rational b)
+
+times(Rational b)
+
+divides(Rational b)
+
+equals(Rational that)
+
+toString()
+
+该数与 b 之和 该数与 b 之差 该数与 b 之积 该数与 b 之商 该数与 that 相等吗 对象的字符串表示
+
+无需测试溢出（请见练习 1.2.17），只需使用两个 long 型实例变量表示分子和分母来控制溢出
+
+图灵社区会员 Mtrestm(shaobo20@gmail.com) 专享 尊重版权
+
+~ 1.2 数据抽象
+
+73
+
+的可能性。使用欧几里得算法来保证分子和分母没有公因子。编写一个测试用例检测你实现的 所有方法。
+
+117
+
+1.2.17 有理数实现的健壮性。在 Rational （请见练习 1.2.16）的开发中使用断言来防止溢出。
+
+1.2.18　累加器的方差。 以下代码为 Accumulator 类添加了 var() 和 stddev() 方法， 它们计算了 addDataValue() 方法的参数的方差和标准差，验证这段代码。
+
+public class Accumulator { private double m; private double s; private int N; public void addDataValue(double x) { N++; s = s + 1.0 * (N-1) / N * (x - m) * (x - m); m = m + (x - m) / N; } public double mean() { return m; } public double var() { return s/(N - 1); } public double stddev() { return Math.sqrt(this.var());
+
+}
+
+}
+
+与直接对所有数据的平方求和的方法相比较，这种实现能够更好地避免四舍五入产生的误差。 1.2.19　字符串解析。 为你在练习 1.2.13 中实现的 Date 和 Transaction 类型编写能够解析字符串数据 的构造函数。它接受一个 String 参数指定的初始值，格式如表 1.2.20 所示：
+
+表 1.2.20
+
+被解析的字符串的格式
+
+类　　型
+
+格　　式
+
+举　　例
+
+118
+
+Date
+
+Transaction
+
+由斜杠分隔的整数 客户、日期和金额，由空白字符分隔
+
+5/22/1939
+
+Turing 5/22/1939 11.99
+
+部分解答：
+
+public Date(String date) { String[] fields = date.split("/"); month = Integer.parseInt(fields[0]); day = Integer.parseInt(fields[1]); year = Integer.parseInt(fields[2]); }
