@@ -24,7 +24,7 @@ public class Ex01 {
             double min = points[0].distanceTo(points[1]);
             for (int i = 0; i < N - 1; i++) {
                 for (int j = i + 1; j < N; j++) { //注意j的起始值比当前的i大
-                    if (points[i].distanceTo(points[j]) < min) {
+                    if (points[i].distanceTo(points[j]) < min) {//比较
                         min = points[i].distanceTo(points[j]);
                     }
                 }
