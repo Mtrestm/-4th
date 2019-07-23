@@ -42,26 +42,6 @@ public class Solution1 {
     }
 
 
-    public static void splitArray(int[] nums, int splitElement) {
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] < splitElement) {
 
-            }
-        }
-    }
-
-    /**
-     * 交换两个元素位置
-     *
-     * @param nums
-     * @param index1
-     * @param index2
-     */
-    public static void exchangeElement(int[] nums, int index1, int index2) {
-        int temp;
-        temp = nums[index1];
-        nums[index1] = nums[index2];
-        nums[index2] = temp;
-    }
 
 }
