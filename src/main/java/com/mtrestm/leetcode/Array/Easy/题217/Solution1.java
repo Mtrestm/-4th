@@ -7,13 +7,18 @@
 
 package com.mtrestm.leetcode.Array.Easy.题217;
 
+import java.util.Arrays;
+
 public class Solution1 {
     public static void main(String[] args) {
 //        int[] nums = {1, 1, 1, 3, 3, 4, 3, 2, 4, 2};
 //        int[] nums = {1, 3, 4, 2};
 
-        int[] nums = {3, 1};
-        System.out.println(containsDuplicate(nums));
+//        int[] nums = {3, 1};
+//        System.out.println(containsDuplicate(nums));
+
+        int[] nums = {7, 3, 1, 0, 0, 6};
+        Arrays.stream(nums).forEach(System.out::println);
     }
 
     public static boolean containsDuplicate(int[] nums) {
@@ -45,14 +50,18 @@ public class Solution1 {
         }
         //1.拆分数组返回基准值的索引
         int splitIndex = splitArr(arr, start, end);
-        if (start == splitIndex) {//2.等于数组起始索引start
-            splitArr(arr, start + 1, end);
-        } else if (end == splitIndex) {//3.等于数组的尾端索引
-            splitArr(arr, start, end - 1);
-        } else {//4.递归调用
-            recurSplit(arr, start, splitIndex - 1);
-            recurSplit(arr, splitIndex + 1, end);
+        //2.等于数组起始索引start
+        while (splitIndex == start) {
+            splitIndex = splitArr(arr, start + 1, end);
         }
+        //3.等于数组的尾端索引
+        while (splitIndex == end) {
+            splitIndex = splitArr(arr, start, end - 1);
+        }
+        //4.递归调用
+        recurSplit(arr, start, splitIndex - 1);
+        recurSplit(arr, splitIndex + 1, end);
+
 
 
     }
