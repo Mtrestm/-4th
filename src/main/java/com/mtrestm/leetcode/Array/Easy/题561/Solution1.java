@@ -19,6 +19,7 @@ public class Solution1 {
         quickSort(nums, 0, nums.length - 1);
         Arrays.stream(nums).forEach(System.out::println);
         System.out.println(arrayPairSum(nums));
+//        Arrays.sort(nums);
 
     }
 
